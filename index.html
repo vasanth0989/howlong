@@ -63,8 +63,9 @@
         const printDate = date => {
             const yearStr = date.years > 1 ? 'years' : 'year'
             const monthStr = date.months > 1 ? 'months' : 'month'
+            const daysStr = date.days > 1 ? 'days' : 'day'
             const hourStr = date.hours > 1 ? 'hours' : 'hour'
-            return `${date.years} ${yearStr} ${date.months} ${monthStr} ${date.hours} ${hourStr} ${date.minutes} minutes ${date.seconds} seconds ${date.milliseconds} milliseconds`
+            return `${date.years} ${yearStr} ${date.months} ${monthStr} ${date.days} ${daysStr} ${date.hours} ${hourStr} ${date.minutes} minutes ${date.seconds} seconds ${date.milliseconds} milliseconds`
         }
         let date;
         const h1Elem = document.querySelector(".time");
