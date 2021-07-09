@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <title>how long?</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        html{
+            font-size: 1.6rem;
+            box-sizing: border-box;
+        }   
+        body{
+            font-family: 'Noto Sans', sans-serif;
+            height:90vh;
+            width: 99vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .time-container{
+            height:40vh;
+            width:80vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+    
+        }
+        .time{
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+   <div class="time-container">
+      <h1 class="time"></h1>
+   </div>
+    <script>
+        const now = moment();
+        const dob = moment("1989-10-09 00:05:00.000");
+        const dateDiffCalc = (date1, date2) => {
+            date2.diff(dob);
+            const years = date1.diff(date2, 'years');
+            date2.add(years, 'years');
+            const months = date1.diff(date2, 'months');
+            date2.add(months, 'months');
+            const days = date1.diff(date2, 'days');
+            date2.add(days, 'days');
+            const hours = date1.diff(date2, 'hours');
+            date2.add(hours, 'hours');
+            const minutes = date1.diff(date2, 'minutes');
+            date2.add(minutes, 'minutes');
+            const seconds = date1.diff(date2, 'seconds');
+            date2.add(seconds, 'seconds');
+            const milliseconds = date1.diff(date2, 'milliseconds');
+            return { years, months, days, hours, minutes, seconds, milliseconds };
+        }
+
+        const printDate = date => {
+            const yearStr = date.years > 1 ? 'years' : 'year'
+            const monthStr = date.months > 1 ? 'months' : 'month'
+            const hourStr = date.hours > 1 ? 'hours' : 'hour'
+            return `${date.years} ${yearStr} ${date.months} ${monthStr} ${date.hours} ${hourStr} ${date.minutes} minutes ${date.seconds} seconds ${date.milliseconds} milliseconds`
+        }
+        let date;
+        const h1Elem = document.querySelector(".time");
+        setInterval(() =>{
+        date = dateDiffCalc(moment(), moment("1989-10-09 00:05:00.000"));
+         h1Elem.textContent = printDate(date);
+        } ,1);
+    </script>
+</body>
+</html>
